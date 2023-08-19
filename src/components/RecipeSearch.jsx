@@ -7,8 +7,8 @@ export const RecipeSearch = ({ clickOn }) => {
 
 	return (
 		<>
-		<label>Search for recipe{&apos}s here:</label>
-		<TextInput />
+			<label>Search for recipes here:</label>
+			<TextInput />
 		</>
-	)
+	);
 };
