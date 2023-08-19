@@ -1,20 +1,15 @@
 import { Center, Heading, Box } from "@chakra-ui/react";
-import { RecipeList } from "../components/RecipeList";
-import { data } from "../utils/data";
 import { RecipeSearch } from "../components/RecipeSearch";
 
-export const RecipeListPage = ({ clickOn }) => {
+export const RecipeListPage = () => {
 	return (
 		<div>
-			<Center h='100vh' flexDir='column'>
+			<Center flexDir='column'>
 				<Box>
 					<Heading>Your Recipe App</Heading>
 					<RecipeSearch />
 				</Box>
 			</Center>
-			<Box p='5'>
-				<RecipeList clickOn={clickOn} recipes={data.hits} />
-			</Box>
 		</div>
 	);
 };
