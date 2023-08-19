@@ -1,7 +1,7 @@
 import { Center, Heading, Box } from "@chakra-ui/react";
 import { RecipeList } from "../components/RecipeList";
 import { data } from "../utils/data";
-import { TextInput } from "../components/ui/TextInput";
+import { RecipeSearch } from "../components/RecipeSearch";
 
 export const RecipeListPage = ({ clickOn }) => {
 	return (
@@ -9,7 +9,7 @@ export const RecipeListPage = ({ clickOn }) => {
 			<Center h='100vh' flexDir='column'>
 				<Box>
 					<Heading>Your Recipe App</Heading>
-					<TextInput />
+					<RecipeSearch />
 				</Box>
 			</Center>
 			<Box p='5'>

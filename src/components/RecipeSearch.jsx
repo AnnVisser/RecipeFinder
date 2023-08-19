@@ -1,14 +1,14 @@
-import { TextInput } from "ui/TextInput.jsx";
+import { TextInput } from "./ui/TextInput";
 import { useState } from "react";
-import { RecipeList } from "./RecipeList";
 
-export const RecipeSearch = ({ clickOn }) => {
-	const [searchField, setSearchField] = useState("Test Recipe");
+export const RecipeSearch = () => {
+	const [searchField, setSearchField] = useState("TestRecipe");
 
 	return (
 		<>
 			<label>Search for recipes here:</label>
 			<TextInput />
+			<p>{searchField}</p>
 		</>
 	);
 };
