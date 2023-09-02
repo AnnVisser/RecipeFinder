@@ -3,7 +3,7 @@ import { useState } from "react";
 import { RecipeList } from "./RecipeList";
 import { data } from "../utils/data";
 
-export const RecipeSearch = ({ clickFn }) => {
+export const RecipeSearch = ({ clickOn }) => {
 	const [searchField, setSearchField] = useState(" ");
 
 	const matchedRecipe = data.hits.filter((recipe) => {
@@ -24,7 +24,7 @@ export const RecipeSearch = ({ clickFn }) => {
 		<>
 			<label>Search for recipes here:</label>
 			<TextInput changeFn={handleChange} />
-			<RecipeList clickFn={clickFn} recipes={matchedRecipe} />
+			<RecipeList clickOn={clickOn} recipes={matchedRecipe} />
 		</>
 	);
 };

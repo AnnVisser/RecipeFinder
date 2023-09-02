@@ -4,10 +4,15 @@ import { RecipePage } from "./pages/RecipePage";
 
 export const App = () => {
 	const [userRecipe, setUserRecipe] = useState();
+
 	return (
 		<div>
 			{userRecipe ? (
-				<RecipePage recipe={userRecipe} />
+				<RecipePage
+					key={userRecipe.recipe.label}
+					recipe={userRecipe}
+					clickOn={setUserRecipe}
+				/>
 			) : (
 				<RecipeListPage clickOn={setUserRecipe} />
 			)}
