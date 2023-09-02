@@ -2,7 +2,7 @@ import { Center, Heading } from "@chakra-ui/react";
 
 export const RecipePage = (recipe) => {
 	const localRecipe = recipe.recipe.recipe;
-	console.log(localRecipe);
+	const nutrientList = ["ENERC_KCAL", "FAT", "CHOCDF", "PROCNT", "CHOLE", "NA"];
 
 	return (
 		<Center h='100vh' flexDir='column'>
@@ -15,21 +15,40 @@ export const RecipePage = (recipe) => {
 			<p>{localRecipe.mealType}</p>
 			<p>{localRecipe.dishType}</p>
 			<p>{localRecipe.totalTime}</p>
-			<p>{localRecipe.dietLabels}</p>
-			<p>{localRecipe.healthLabels}</p>
-			<p>{localRecipe.cautions}</p>
-
-			{localRecipe.ingredientLines.map((element) => {
-				return <p>{element}</p>;
-			})}
-
 			<p>{localRecipe.yield}</p>
-			{localRecipe.totalNutrients.map((element) => {
-				return <p>{element}</p>;
+			{localRecipe.dietLabels.map((diet) => {
+				return <p key={diet}>{diet}</p>;
 			})}
-			{/*  In de map nog een map maken die zegt als element een array is, toon 1 voor 1 via nog een map, anders toon gewoon.  */}
+
+			{localRecipe.healthLabels.map((healthLabel) => {
+				return <p key={healthLabel}>{healthLabel}</p>;
+			})}
+
+			{localRecipe.cautions.map((caution) => {
+				return <p key={caution}>{caution}</p>;
+			})}
+
+			{localRecipe.ingredientLines.map((ingredients) => {
+				return <p key={ingredients}>{ingredients}</p>;
+			})}
+
+			<div>
+				<h2>Total Nutrients</h2>
+				<ul>
+					{Object.keys(localRecipe.totalNutrients).map(
+						(nutrientKey) =>
+							nutrientList.includes(nutrientKey) && (
+								<li key={nutrientKey}>
+									<strong>
+										{localRecipe.totalNutrients[nutrientKey].label}:
+									</strong>{" "}
+									{localRecipe.totalNutrients[nutrientKey].quantity}{" "}
+									{localRecipe.totalNutrients[nutrientKey].unit}
+								</li>
+							)
+					)}
+				</ul>
+			</div>
 		</Center>
 	);
 };
-
-// Total nutrients (Energy in kcal, protein, fat, carbs, cholesterol, sodium)
