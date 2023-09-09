@@ -8,11 +8,7 @@ export const App = () => {
 	return (
 		<div>
 			{userRecipe ? (
-				<RecipePage
-					key={userRecipe.recipe.label}
-					recipe={userRecipe}
-					clickOn={setUserRecipe}
-				/>
+				<RecipePage recipe={userRecipe} clickOn={setUserRecipe} />
 			) : (
 				<RecipeListPage clickOn={setUserRecipe} />
 			)}
