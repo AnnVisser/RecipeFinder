@@ -1,4 +1,4 @@
-import { TextInput } from "./ui/TextInput";
+import { Input, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { RecipeList } from "./RecipeList";
 import { data } from "../utils/data";
@@ -22,8 +22,13 @@ export const RecipeSearch = ({ clickOn }) => {
 
 	return (
 		<>
-			<label>Search for recipes here:</label>
-			<TextInput changeFn={handleChange} />
+			<Text>Search for recipes here:</Text>
+			<Input
+				boxShadow='2px 2px 4px #000000'
+				variant='outline filled'
+				width='70%'
+				onChange={handleChange}
+			/>
 			<RecipeList clickOn={clickOn} recipes={matchedRecipe} />
 		</>
 	);

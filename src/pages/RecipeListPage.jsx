@@ -5,7 +5,7 @@ export const RecipeListPage = ({ clickOn }) => {
 	return (
 		<div>
 			<Center flexDir='column'>
-				<Box>
+				<Box textAlign='center'>
 					<Heading>Your Recipe App</Heading>
 					<RecipeSearch clickOn={clickOn} />
 				</Box>
@@ -13,7 +13,3 @@ export const RecipeListPage = ({ clickOn }) => {
 		</div>
 	);
 };
-
-// You can play around with the console log, but ultimately remove it once you are done
-// console.log(data.hits[5].recipe.label);
-// console.log(data.hits[3].recipe.healthLabels);
