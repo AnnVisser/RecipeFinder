@@ -33,14 +33,15 @@ export const RecipePage = ({ recipe, clickOn }) => {
 			<CardHeader
 				w='70%'
 				bgColor='#e9ecef'
-				fontSize='sm'
 				padding='5px'
 				color='pink'
 				display='flex'
 				justifyContent='right'
 			>
 				<Tag bgColor='#e9ecef' cursor='pointer' onClick={() => clickOn()}>
-					<TagLabel>Back to Recipes</TagLabel>
+					<TagLabel fontSize={{ base: "2xs", sm: "sm" }}>
+						Back to Recipes
+					</TagLabel>
 					<TagCloseButton />
 				</Tag>
 			</CardHeader>
@@ -53,7 +54,7 @@ export const RecipePage = ({ recipe, clickOn }) => {
 				w='70%'
 				borderRadius='0px 0px 10px 10px'
 				display='flex'
-				flexDirection='row'
+				flexDirection={{ base: "column", sm: "row" }}
 				justifyContent='space-between'
 			>
 				{/* Leftbox */}
