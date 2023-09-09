@@ -8,7 +8,6 @@ import {
 	Card,
 	CardHeader,
 	CardBody,
-	List,
 	ListItem,
 	UnorderedList,
 } from "@chakra-ui/react";
