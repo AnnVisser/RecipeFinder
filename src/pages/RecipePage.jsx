@@ -1,99 +1,170 @@
-import { Button, Text, Image, Box } from "@chakra-ui/react";
+import {
+	Tag,
+	TagLabel,
+	TagCloseButton,
+	Text,
+	Image,
+	Box,
+	Card,
+	CardHeader,
+	CardBody,
+	List,
+	ListItem,
+	UnorderedList,
+} from "@chakra-ui/react";
 
 export const RecipePage = ({ recipe, clickOn }) => {
 	const localRecipe = recipe.recipe;
 	const nutrientList = ["ENERC_KCAL", "FAT", "CHOCDF", "PROCNT", "CHOLE", "NA"];
 
 	return (
-		<Box
-			display='flex'
-			alignItems='center'
-			justifyContent='space-between'
-			flexDirection='column'
-		>
-			{/* Header */}
-			<Box w='100%' h='300px' textAlign='center'>
+		<Card display='flex' alignItems='center' flexDirection={{ base: "column" }}>
+			{/* The header */}
+			<CardHeader bgColor='#e9ecef' w='70%' padding='0px' textAlign='center'>
 				<Image
 					objectFit='cover'
 					w='100%'
-					h='100%'
+					h={{ base: "10rem", sm: "20rem" }}
 					src={localRecipe.image}
 					alt='Delicious looking food you cannot see'
 				/>
-
-				<Button boxShadow='2px 2px 4px #000000' onClick={() => clickOn()}>
-					Recipes
-				</Button>
-
-				<Text
-					as='b'
-					position='relative'
-					top='-73px'
-					color='#e9ecef'
-					fontSize='6xl'
-					textShadow='2px 2px 4px #000000'
-				>
-					{localRecipe.label}
-				</Text>
-			</Box>
-
-			{/* Informationbox */}
-			<Box
-				position='relative'
-				left='-20%'
-				margin='25px'
-				padding='25px'
-				backgroundColor='#e9ecef'
-				borderRadius='10px'
-				boxShadow='2px 2px 4px #000000'
+			</CardHeader>
+			{/* Backbutton */}
+			<CardHeader
+				w='70%'
+				bgColor='#e9ecef'
+				fontSize='sm'
+				padding='5px'
+				color='pink'
+				display='flex'
+				justifyContent='right'
 			>
-				<p>{localRecipe.mealType}</p>
-				<p>{localRecipe.dishType}</p>
-				<p>{localRecipe.totalTime}</p>
-				<p>{localRecipe.yield}</p>
+				<Tag bgColor='#e9ecef' cursor='pointer' onClick={() => clickOn()}>
+					<TagLabel>Back to Recipes</TagLabel>
+					<TagCloseButton />
+				</Tag>
+			</CardHeader>
 
-				{localRecipe.ingredientLines.map((ingredients) => {
-					return <p key={ingredients}>{ingredients}</p>;
-				})}
-			</Box>
-
-			{/* Labelsbox */}
-			<Box
-				margin='25px'
-				position='relative'
-				top='-363px'
-				left='150px'
-				padding='25px'
+			{/* The recipe itself */}
+			<CardBody
+				margin='0px'
+				padding='5px 15px 5px 15px'
 				backgroundColor='#e9ecef'
-				borderRadius='10px'
-				boxShadow='2px 2px 4px #000000'
+				w='70%'
+				borderRadius='0px 0px 10px 10px'
+				display='flex'
+				flexDirection='row'
+				justifyContent='space-between'
 			>
-				{localRecipe.dietLabels.map((diet) => {
-					return <p key={diet}>{diet}</p>;
-				})}
+				{/* Leftbox */}
+				<Box>
+					{/* title and mealtype */}
+					<Text as='b' textTransform='uppercase' color='grey' fontSize='2xs'>
+						{localRecipe.mealType}
+						<br />
+					</Text>
+					<Text w='100%' as='b' fontSize='xl'>
+						{localRecipe.label}
+					</Text>
+					{/* Information */}
+					<Text fontSize='sm' textTransform='capitalize'>
+						<b>Dish:</b> {localRecipe.dishType}
+					</Text>
+					<Text fontSize='sm'>
+						<p>
+							<b>Total cooking Time: </b>
+							{localRecipe.totalTime} minutes
+						</p>
+						<p>
+							<b>Servings: </b>
+							{localRecipe.yield}
+						</p>
+					</Text>
+					<br />
+					{/* Ingredients */}
+					<Text fontSize='sm'>
+						<b>Ingredients:</b>
 
-				{localRecipe.healthLabels.map((healthLabel) => {
-					return <p key={healthLabel}>{healthLabel}</p>;
-				})}
+						<UnorderedList>
+							{localRecipe.ingredientLines.map((ingredients) => {
+								return <ListItem key={ingredients}>{ingredients}</ListItem>;
+							})}
+						</UnorderedList>
+					</Text>
+				</Box>
 
-				{localRecipe.cautions.length > 0 &&
-					localRecipe.cautions.map((caution) => {
-						return <p key={caution}>{caution}</p>;
-					})}
-				<h2>Total Nutrients</h2>
-				<ul>
+				{/* Labels box */}
+				<Box fontSize='sm' w='50%'>
+					{localRecipe.cautions.length > 0 && (
+						<>
+							<Text as='b'>
+								Health labels:
+								<br />
+							</Text>
+							{localRecipe.healthLabels.map((healthLabel) => {
+								return (
+									<Tag
+										fontSize='xs'
+										m='2px'
+										bgColor='purple.100'
+										key={healthLabel}
+									>
+										{healthLabel}
+									</Tag>
+								);
+							})}
+						</>
+					)}
+					<br />
+					{localRecipe.dietLabels.length > 0 && (
+						<>
+							<Text as='b'>
+								Diet:
+								<br />
+							</Text>
+							{localRecipe.dietLabels.map((diet) => {
+								return (
+									<Tag fontSize='xs' m='2px' bgColor='green.100' key={diet}>
+										{diet}
+									</Tag>
+								);
+							})}
+						</>
+					)}
+					<br />
+
+					{localRecipe.cautions.length > 0 && (
+						<>
+							<Text as='b'>
+								Cautions:
+								<br />
+							</Text>
+							{localRecipe.cautions.map((caution) => {
+								return (
+									<Tag fontSize='xs' m='2px' bgColor='red.100' key={caution}>
+										{caution}
+									</Tag>
+								);
+							})}
+						</>
+					)}
+					<br />
+					<Text as='b'>Total Nutrients:</Text>
+					<br />
+
 					{Object.keys(localRecipe.totalNutrients).map(
 						(nutrient) =>
 							nutrientList.includes(nutrient) && (
-								<li key={nutrient}>
-									<strong>{localRecipe.totalNutrients[nutrient].label}:</strong>{" "}
-									{localRecipe.totalNutrients[nutrient].quantity}{" "}
+								<Tag fontSize='xs' m='6px' bgColor='#e9ecef' key={nutrient}>
+									{localRecipe.totalNutrients[nutrient].label}
+									<br />
+									{Math.round(localRecipe.totalNutrients[nutrient].quantity)}
 									{localRecipe.totalNutrients[nutrient].unit}
-								</li>
+								</Tag>
 							)
 					)}
-				</ul>
-			</Box>
-		</Box>
+				</Box>
+			</CardBody>
+		</Card>
 	);
 };
